@@ -1,0 +1,35 @@
+﻿using samplewebapi.DTOs;
+using WebApiPractice.DTOs;
+
+namespace WebApiPractice.Services;
+
+public interface IStudentService
+{
+    Task<List<StudentDto>> GetAllStudentsAsync();
+
+    Task<StudentDto?> GetStudentByIdAsync(int id);
+
+    Task<StudentDto> AddStudentAsync(CreateStudentDto studentDto);
+
+    Task<StudentDto?> UpdateStudentAsync(int id, UpdateStudentDto studentDto);
+
+    Task<bool> DeleteStudentAsync(int id);
+
+    Task<bool> EmailExistsAsync(string email, int? excludeStudentId = null);
+
+    Task<List<StudentDto>> SearchStudentsByNameAsync(string search);
+    Task<List<StudentDto>> GetStudentsByDepartmentIdAsync(int departmentId);
+
+    Task<PagedResult<StudentDto>> GetPagedStudentsAsync(
+    int pageNumber,
+    int pageSize);
+
+    Task<PagedResult<StudentDto>> GetFilteredAndPagedStudentsAsync(
+    string? search,
+    int? departmentId,
+    string? sortBy,
+    string? sortOrder,
+    int pageNumber,
+    int pageSize);
+
+}
